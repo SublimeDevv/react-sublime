@@ -28,7 +28,7 @@ export default function ListaAsesorias() {
             <div className="card w-25 p-3" key={asesoria.id_asesoria}>
               <div className="card-body text-center">
                 <img
-                  src={require("./../imagenes/sin-portada.jpg")}
+                  src={require("./../imagenes/"+asesoria.portada)}
                   className="card-img-top"
                   alt="..."
                 />

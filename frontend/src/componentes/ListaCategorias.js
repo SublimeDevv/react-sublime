@@ -27,7 +27,7 @@ export default function ListaCategorias() {
             <div className="card w-25 p-3" key={categoria.id_categoria}>
               <div className="card-body text-center">
                 <img
-                  src={require("./../imagenes/sin-portada.jpg")}
+                  src={require("../imagenes/"+categoria.portada)}
                   className="card-img-top"
                   alt="..."
                 />

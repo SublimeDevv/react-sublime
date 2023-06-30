@@ -42,6 +42,22 @@ CREATE TABLE `asesorias` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 USE asesorias;
+
+CREATE VIEW VW_Obtener_Divisiones AS
+SELECT * FROM divisiones WHERE estatus = 1;
+
+SELECT * FROM VW_Obtener_Divisiones;
+
+CREATE VIEW VW_Obtener_Categorias AS
+SELECT c.nombre_categoria, division, c.portada FROM asesorias INNER JOIN categorias as c ON id_categoria = categoria;
+
+SELECT * FROM VW_Obtener_Categorias;
+
+CREATE VIEW VW_Obtener_Asesorias AS
+SELECT * FROM asesorias;
+
+SELECT * FROM VW_Obtener_Asesorias;
+
 SELECT * FROM asesorias WHERE division = 1;
 SELECT * FROM asesorias INNER JOIN categorias ON id_categoria = categoria WHERE division = 2;
 
@@ -96,9 +112,10 @@ CREATE TABLE `divisiones` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-USE asesorias
-ALTER TABLE `divisiones` ADD COLUMN description VARCHAR(100)
-
+USE asesorias;
+ALTER TABLE `categorias` ADD COLUMN portada VARCHAR(30);
+ALTER TABLE `asesorias` ADD COLUMN portada VARCHAR(30);
+SELECT * FROM categorias;
 --
 -- Dumping data for table `divisiones`
 --

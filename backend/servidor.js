@@ -31,7 +31,7 @@ app.listen(8081, () => {
 
 app.get('/asesorias/:id', (peticion, respuesta) => {
   const id = peticion.params.id;
-  const sql = "SELECT * FROM asesorias WHERE division = ?";
+  const sql = "SELECT * FROM VW_Obtener_Asesorias WHERE division = ?";
   conexion.query(sql, [id], (error, resultado) => {
     if (error) {
       return respuesta.json([{ Error: "Error en la consulta" }]);
@@ -43,7 +43,7 @@ app.get('/asesorias/:id', (peticion, respuesta) => {
 
 app.get('/categorias/:id', (peticion, respuesta) => {
   const id = peticion.params.id;
-  const sql = "SELECT nombre_categoria, division FROM asesorias INNER JOIN categorias ON id_categoria = categoria WHERE division = ?";
+  const sql = "SELECT * FROM VW_Obtener_Categorias WHERE division = ?";
 
   conexion.query(sql, [id], (error, resultado) => {
     if (error) {
@@ -57,17 +57,16 @@ app.get('/categorias/:id', (peticion, respuesta) => {
 //6 Obtener la lista de divisiones de la universidad 
 app.get('/obtenerDivisiones', (peticion, respuesta) => {
     //6.1 consulta sql
-    const sql = "SELECT * FROM divisiones WHERE estatus = 1";
+    const sql = "SELECT * FROM VW_Obtener_Divisiones";
     //6.2 Envio a la conexión
     conexion.query(sql, (error, resultado) => {
         // 6.3 compruebo el resultado
-        console.log(error)
         if (error) return respuesta.json({Error: "Error en la consulta"});
         return respuesta.json({Estatus: "EXITOSO", Resultado: resultado});
     });
 });
 
-app.get('/asesorias/:id')
+//app.get('/asesorias/:id')
 
 // Triggers, vistas y procedure
 
