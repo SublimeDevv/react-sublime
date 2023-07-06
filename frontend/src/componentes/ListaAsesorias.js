@@ -28,12 +28,13 @@ export default function ListaAsesorias() {
             <div className="card w-25 p-3" key={asesoria.id_asesoria}>
               <div className="card-body text-center">
                 <img
-                  src={require("./../imagenes/"+asesoria.portada)}
+                  src={require("./../imagenes/"+asesoria.portada_asesoria)}
                   className="card-img-top"
                   alt="..."
                 />
                 <h5 className="card-title">{asesoria.nombre_asesoria}</h5>
                 <p className="card-text">{asesoria.descripcion}</p>
+                <p className="card-text">{asesoria.nombre_categoria}</p>
                 <button className="btn btn-primary">Inscriberse</button>
               </div>
             </div>

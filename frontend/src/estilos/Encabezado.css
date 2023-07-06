@@ -1,9 +1,27 @@
-.bg-turquesa{
-    background-color: #00d084;
+body {
+  background-color: #00d084;
 }
-.bg-marino{
-    background-color: #0b3856;
+
+.formcontent {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 400px;
 }
-.logo{
-    width: 150px;
+
+.formcontent * {
+  width: 100%;
+}
+.bg-turquesa {
+  background-color: #00d084;
+}
+.bg-marino {
+  background-color: #0b3856;
+}
+.logo {
+  width: 150px;
+}
+.inverted-image {
+  filter: brightness(0%) contrast(100%);
+  
 }

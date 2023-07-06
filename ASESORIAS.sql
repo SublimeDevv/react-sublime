@@ -146,6 +146,25 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+DELIMITER //
+
+CREATE PROCEDURE SP_RegistrarUsuarios(nombre varchar(45), apellidos varchar(45), correo varchar(80), contrasenia varchar(100))
+BEGIN
+INSERT INTO `usuarios` (nombre_usuario, apellidos_usuario, correo_electronico, contrasenia, tipo_usuario) VALUES (nombre, apellidos, correo, contrasenia, 2);
+END //
+
+DELIMITER ;
+
+DROP PROCEDURE SP_RegistrarUsuarios;
+
+call SP_RegistrarUsuarios("Juan", "Mendoza", "juanmen1404@gmail.com", "macaco66?");
+
+SELECT * FROM Usuarios;
+
+CREATE VIEW VW_Obtener_Usuarios AS
+SELECT * FROM Usuarios;
+
 --
 -- Dumping data for table `usuarios`
 --
