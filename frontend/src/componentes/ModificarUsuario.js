@@ -1,18 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import sw from "sweetalert";
 
-export default function CrearUsuario() {
+export default function ModificarUsuario() {
   const navigate = useNavigate();
-  useEffect(() => {
-    const verificarSesion = localStorage.getItem("token");
-    console.log(verificarSesion)
-    if (verificarSesion) {
-      navigate("/");
-    }
-  }, [navigate]);
 
 const [body, setBody] = useState({
   Correo: "",
@@ -28,15 +21,6 @@ const Enviar = async () => {
   if (!body.Correo.length || !body.Contrasenia) {
       return sw({ icon: 'warning', title: '¡Oops!', text: 'Debes rellenar todos los campos.' })  
   }
-
-  const verificarCorreo = await axios.post("http://localhost:8081/verificar", {
-      Correo: body.Correo
-  });
-
-
-  const passcor = verificarCorreo.data.Resultado[0];
-  console.log(passcor)
-  if (passcor && passcor.contrasenia !== body.Contrasenia) return sw({ icon: 'error', title: 'Error', text: 'Contraseña incorrecta.' });
 
   try {
     const respuesta = await axios.post("http://localhost:8081/login", body);

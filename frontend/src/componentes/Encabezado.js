@@ -1,15 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import "../estilos/Encabezado.css";
 import { Link } from "react-router-dom";
 
 export default function Encabezado() {
+  const [autenticado, setAutenticado] = useState(localStorage.getItem("token"));
+
+  const cerrarSesion = () => {
+    setAutenticado(null);
+    localStorage.removeItem("token");
+  };
+
+  const botones = () => {
+    if (autenticado) {
+      return (
+        <>
+          <Link to
+          ={"/RegistrarAsesor"}>
+            <button
+              type="button"
+              className="btn btn-outline-light me-2"
+            >
+              Registrar Asesor
+            </button>
+          </Link>
+          <button
+            type="button"
+            className="btn bg-marino text-white"
+            onClick={cerrarSesion}
+          >
+            Cerrar Sesión
+          </button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Link to={"/IniciarSesion"}>
+            <button type="button" className="btn btn-outline-light me-2">
+              Acceso
+            </button>
+          </Link>
+          <Link to={"/Registrarse"}>
+            <button type="button" className="btn bg-marino text-white">
+              Registro
+            </button>
+          </Link>
+        </>
+      );
+    }
+  };
+
   return (
     <header className="p-3 text-black-50 bg-turquesa">
       <div className="container-fluid w-75 p-3">
         <div className="row align-items-end">
           <div className="col-3">
             <a href="/" className="text-white text-decoration-none">
-              <img src={require("../imagenes/logo-pia.png")} alt="" className="logo" />
+              <img
+                src={require("../imagenes/logo-pia.png")}
+                alt=""
+                className="logo"
+              />
               <br />
               <span>Plataforma Integral de Asesorías</span>
             </a>
@@ -29,7 +80,6 @@ export default function Encabezado() {
                   Asesores
                 </Link>
               </li>
-
               <li>
                 <a href="#" className="nav-link px-2 text-white fs-5">
                   Preguntas Frecuentes
@@ -42,21 +92,7 @@ export default function Encabezado() {
               </li>
             </ul>
           </nav>
-          <div className=" col-2 text-end align-middle">
-            <Link to={'/IniciarSesion'}>
-            <button type="button" className="btn btn-outline-light me-2 ">
-              Acceso
-            </button>
-            </Link>
-            
-          <Link to={"/Registrarse"}>
-          <button type="button" className="btn bg-marino text-white">
-              Registro
-            </button>
-
-          </Link>
-            
-          </div>
+          <div className=" col-2 text-end align-middle">{botones()}</div>
         </div>
       </div>
     </header>

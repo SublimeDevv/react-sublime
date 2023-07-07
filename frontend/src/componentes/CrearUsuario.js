@@ -81,7 +81,7 @@ export default function CrearUsuario() {
         text: "Las contraseñas deben coincidir.",
       });
     try {
-      await axios.post(
+      const respuesta = await axios.post(
         "http://localhost:8081/registrarUsuario",
         {
           Nombre: body.Nombre,
@@ -96,7 +96,7 @@ export default function CrearUsuario() {
         }
       );
       navigate("/");
-      localStorage.setItem("autenticado", true);
+      localStorage.setItem("token", respuesta.data.token);
     } catch (error) {
       console.log("Error en registrar el usuario: " + error);
     }

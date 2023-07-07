@@ -185,3 +185,9 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-06-23 12:51:51
+DELIMITER //
+
+CREATE PROCEDURE SP_RegistrarAsesor(correo VARCHAR(50))
+BEGIN
+UPDATE usuarios SET tipo_usuario = 2 WHERE correo_usuario = correo;
+END //
